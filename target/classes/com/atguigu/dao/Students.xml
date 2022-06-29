@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace的值为Dao的全限定名称 -->
+<mapper namespace="com.atguigu.dao.Students">
+
+    <select id="selectAll" resultType="com.atguigu.entity.Student">
+        select * from students
+    </select>
+
+    <insert id="insertStudent">
+        insert into students(id,name,age,email) values(#{id},#{name},#{age},#{email})
+    </insert>
+
+    <update id="UpDateAgeByName">
+        update students set age = #{Age} where name = #{Name}
+    </update>
+
+    <delete id="deleteByIds">
+        delete from students where id in
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>
